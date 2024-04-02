@@ -42,6 +42,13 @@ namespace ZzzConsoleTest
                 await repo.CreateAsync(dto);
             }
 
+            var ttt = repo.GetAllAsync();
+
+            await foreach (var tt in ttt)
+            {
+                Console.WriteLine(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff"));
+            }
+
             var result = await repo.GetAllAsync().ToListAsync();
 
             foreach (var dto in dtos)

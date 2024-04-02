@@ -56,7 +56,9 @@ namespace dng.b2b.portals.ftncs.poc.DynamoDbHelper
                 ScanResponse? response = await _dynamoDb.ScanAsync(request);
                 foreach (var item in response.Items)
                 {
+                    await Task.Delay(1000);
                     var itemAsDocument = Document.FromAttributeMap(item);
+                    Console.WriteLine(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff"));
                     yield return JsonSerializer.Deserialize<T>(itemAsDocument.ToJson())!;
                 }
                 lastKeyEvaluated = response.LastEvaluatedKey;
