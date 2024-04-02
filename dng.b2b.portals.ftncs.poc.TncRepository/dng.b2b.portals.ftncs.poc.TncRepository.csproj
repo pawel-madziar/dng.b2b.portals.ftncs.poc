@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\dng.b2b.portals.ftncs.poc.DynamoDbHelper\dng.b2b.portals.ftncs.poc.DynamoDbHelper.csproj" />
+    <ProjectReference Include="..\dng.b2b.portals.ftncs.poc.Repositories\dng.b2b.portals.ftncs.poc.Repositories.csproj" />
+  </ItemGroup>
+
+</Project>

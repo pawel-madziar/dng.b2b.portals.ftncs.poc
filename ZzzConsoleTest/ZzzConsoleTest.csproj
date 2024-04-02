@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bogus" Version="35.5.0" />
+    <PackageReference Include="System.Linq.Async" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\dng.b2b.portals.ftncs.poc.Repositories\dng.b2b.portals.ftncs.poc.Repositories.csproj" />
+    <ProjectReference Include="..\dng.b2b.portals.ftncs.poc.TncRepository\dng.b2b.portals.ftncs.poc.TncRepository.csproj" />
+  </ItemGroup>
+
+</Project>
