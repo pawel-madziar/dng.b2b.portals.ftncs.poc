@@ -42,12 +42,12 @@ namespace ZzzConsoleTest
                 await repo.CreateAsync(dto);
             }
 
-            var ttt = repo.GetAllAsync();
+            //var ttt = repo.GetAllAsync();
 
-            await foreach (var tt in ttt)
-            {
-                Console.WriteLine(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff"));
-            }
+            //await foreach (var tt in ttt)
+            //{
+            //    Console.WriteLine(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff"));
+            //}
 
             var result = await repo.GetAllAsync().ToListAsync();
 
