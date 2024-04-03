@@ -2,44 +2,51 @@
 using System.Xml.Linq;
 using Amazon.DynamoDBv2;
 using Amazon.Runtime.Documents;
+using dng.b2b.portals.ftncs.poc.DynamoDbHelper;
 using dng.b2b.portals.ftncs.poc.Repositories;
 
 namespace dng.b2b.portals.ftncs.poc.TncRepository;
 
-public class DocumentDtoRepository(IAmazonDynamoDB dynamoDb) : IDocumentDtoRepository
+public class DocumentDtoRepository : DynamoDbCrudl<DocumentDynamoDbDto>, IDocumentDtoRepository
 {
-    DocumentDynamoDbCrudl crudl = new(dynamoDb);
-
-    public async IAsyncEnumerable<DocumentDto> GetAllAsync()
+    public DocumentDtoRepository(IAmazonDynamoDB dynamoDb): base(dynamoDb)
     {
-        var result = crudl.GetAllAsync();
-        await foreach (var ddto in result)
+            
+    }
+    protected override string TableName { get; } = "FrenchTnCsDocuments";
+
+    public new async IAsyncEnumerable<DocumentDto> GetAllAsync()
+    {
+        var result = base.GetAllAsync();
+        await foreach (var dto in result)
         {
-            yield return (DocumentDto)ddto;
+            yield return (DocumentDto)dto;
         }
     }
 
     public async Task<DocumentDto?> GetAsync(string countryCode, string schemeCode, string documentType)
     {
-        var dDto = await crudl.GetAsync(countryCode!, schemeCode!, documentType!);
+        var dDto = await base.GetAsync($"{documentType}", $"{countryCode}_{schemeCode}");
         return (DocumentDto)dDto;
     }
 
     public async Task<bool> DeleteAsync(string countryCode, string schemeCode, string documentType)
     {
-        var result = await crudl.DeleteAsync(countryCode!, schemeCode!, documentType!);
+        var result = await base.DeleteAsync($"{documentType}", $"{countryCode}_{schemeCode}");
         return result;
     }
 
     public async Task<bool> CreateAsync(DocumentDto dto)
     {
-        var result = await crudl.CreateAsync((DocumentDynamoDbDto)dto);
+        var result = await base.CreateAsync((DocumentDynamoDbDto)dto);
         return result;
     }
 
     public async Task<bool> UpdateAsync(DocumentDto dto)
     {
-        var result = await crudl.UpdateAsync((DocumentDynamoDbDto)dto);
+        var result = await base.UpdateAsync((DocumentDynamoDbDto)dto);
         return result;
     }
+
+
 }

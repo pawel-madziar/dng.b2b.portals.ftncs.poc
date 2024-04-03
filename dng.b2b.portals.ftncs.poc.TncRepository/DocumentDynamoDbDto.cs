@@ -4,7 +4,7 @@ using dng.b2b.portals.ftncs.poc.Repositories;
 
 namespace dng.b2b.portals.ftncs.poc.TncRepository;
 
-internal class DocumentDynamoDbDto : IDynamoDbDto
+public class DocumentDynamoDbDto : IDynamoDbDto
 {
     [JsonPropertyName("pk")]
     public string pk { get; set; } = string.Empty;

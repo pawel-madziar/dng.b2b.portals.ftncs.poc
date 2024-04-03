@@ -35,7 +35,7 @@ namespace ZzzConsoleTest
 
             var dtos = dtoFaker.Generate(10);
 
-            var crd = new StoredProfileAWSCredentials("VS");
+            var crd = new StoredProfileAWSCredentials("default");
 
             IAmazonDynamoDB dynamoDb = new AmazonDynamoDBClient(crd, Amazon.RegionEndpoint.EUWest2);
 
