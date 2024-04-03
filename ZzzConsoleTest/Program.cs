@@ -1,7 +1,9 @@
 ﻿using Amazon.DynamoDBv2;
+using Amazon.Runtime;
 using Bogus;
 using dng.b2b.portals.ftncs.poc.Repositories;
 using dng.b2b.portals.ftncs.poc.TncRepository;
+using System.Net.WebSockets;
 
 namespace ZzzConsoleTest
 {
@@ -33,8 +35,9 @@ namespace ZzzConsoleTest
 
             var dtos = dtoFaker.Generate(10);
 
-            IAmazonDynamoDB dynamoDb = new AmazonDynamoDBClient();
+            var crd = new StoredProfileAWSCredentials("VS");
 
+            IAmazonDynamoDB dynamoDb = new AmazonDynamoDBClient(crd, Amazon.RegionEndpoint.EUWest2);
 
             IDocumentDtoRepository repo = new DocumentDtoRepository(dynamoDb);
             foreach (var dto in dtos)
